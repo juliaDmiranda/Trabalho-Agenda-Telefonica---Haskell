@@ -7,40 +7,40 @@ data Contato = Contato {
 
                         } deriving(Show, Eq)
 
--- Funções que retornam as informações do contado separadamente
-getnome :: Contato -> [Char]
-getnome (Contato nome _ _ _) = nome
-
-gettelefone :: Contato -> Int
-gettelefone (Contato _ telefone _ _) = telefone
-
-getendereco :: Contato -> [Char]
-getendereco (Contato _ _ endereco _) = endereco
-
-getrelacao :: Contato -> [Char]
-getrelacao (Contato _ _ _ relacao) = relacao
-
 addContato :: [Contato] -> Contato -> [Contato]
 addContato [] novoContato = [novoContato]
 addContato agendaAntiga novoContato = [novoContato] ++ agendaAntiga  
 
 -- Função toString 
 toString :: Contato -> [Char]
-toString contato = "Nome: " ++ getnome contato 
-                                    ++ ", Telefone: " ++ show (gettelefone contato) 
-                                    ++ ", Endereco: " ++ getendereco contato 
-                                    ++ ", Relacao: " ++ getrelacao contato 
-
+toString contato = "Nome: " ++ nome contato 
+                                    ++ ", Telefone: " ++ show (telefone contato) 
+                                    ++ ", Endereco: " ++ endereco contato 
+                                    ++ ", Relacao: " ++ relacao contato 
+                                    ++  "///////"                    
 -- Função auxiliar de mostrar agenda
-mostraAgenda :: [Contato] -> [Char]
+mostraAgenda_aux :: [Contato] -> [Char]
 mostraAgenda_aux [] = "."
 mostraAgenda_aux (contato:agenda) = toString contato ++ mostraAgenda_aux agenda 
 
--- Função para mostra agenda
+-- Função para mostrar agenda
 mostraAgenda :: [Contato] -> [Char]
 mostraAgenda agenda 
                     | null agenda = "Agenda vazia"
                     | otherwise = mostraAgenda_aux agenda
+
+ehDiferente :: [Char] -> [Char] -> Bool
+ehDiferente nomeDoContato nome = nomeDoContato /= nome
+
+{- 
+achaContato :: [Char] -> [Contato] -> Contato
+achaContato nome agenda 
+                        | -}
+{- 
+remover :: [Contato] -> [Char] -> Contato -> [Contato]
+remover agenda nome = filter (ehDiferente nome1 nome) agenda    
+                        where 
+                           nome1  = (Contato nome _ _ _) -}
 
 
 
