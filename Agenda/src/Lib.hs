@@ -40,16 +40,20 @@ inserir agendaAntiga novoContato
                         | procurar (nome novoContato) agendaAntiga = alterar novoContato agendaAntiga
                         | otherwise = agendaAntiga ++ [novoContato]
 
-{- 
-achaContato :: [Char] -> [Contato] -> Contato
-achaContato nome agenda 
-                        | -}
-{- 
-remover :: [Contato] -> [Char] -> Contato -> [Contato]
-remover agenda nome = filter (ehDiferente nome1 nome) agenda    
-                        where 
-                           nome1  = (Contato nome _ _ _) -}
+-- Função auxiliar de mostrar agenda
+mostrar_aux :: [Contato] -> IO()
+mostrar_aux [] = putStrLn("==============================================================================")
+mostrar_aux (contato:agenda) = do
+                                    putStrLn ("Nome: " ++ nome contato ++ ", Telefone: " ++ show (telefone contato) ++ ", Endereco: " ++ endereco contato ++ ", Relacao: " ++ relacao contato ++  "")
+                                    mostrar_aux agenda 
 
+-- Função para mostrar agenda
+mostrar :: [Contato] -> IO()
+mostrar agenda 
+                    | null agenda = putStrLn ("Agenda vazia")
+                    | otherwise = do
+                                    putStrLn("==============================================================================")
+                                    mostrar_aux agenda
 
 
 contato1 = Contato "Fulano" 99999999 "Rua A" "UFF"
