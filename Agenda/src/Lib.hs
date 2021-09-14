@@ -52,3 +52,20 @@ remover agenda nome2 = [nome1 | nome1 <- agenda, (nome nome1) /= nome2]
 
 
 -- Operações pedidas no exercício
+trabalho :: IO() 
+trabalho = 
+            do
+                putStrLn("Inserindo os contatos na agenda vazia")
+                putStrLn("")
+                let agendaInicial = [(Contato "Fulano" 99999999 "Rua A" "UFF"), (Contato "Ciclano" 88888888 "Rua B" "Cederj"), (Contato "Beltrano" 88889999 "Rua C" "Infância")]
+                mostrar agendaInicial
+                putStrLn("")
+                putStrLn("Altera Fulano")
+                putStrLn("")
+                let agendaInsereFulano = inserir agendaInicial (Contato "Fulano" 77777777 "Rua D" "Churrasco do Ciclano")
+                mostrar agendaInsereFulano
+                putStrLn("")
+                putStrLn("Remove Ciclano")
+                putStrLn("")
+                let agendaRemoveCiclano = remover agendaInsereFulano "Ciclano"
+                mostrar agendaRemoveCiclano
