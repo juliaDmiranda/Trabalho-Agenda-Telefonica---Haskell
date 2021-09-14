@@ -14,13 +14,13 @@ procurar nomeDoContato ((Contato nome _ _ _) : agenda) = if (nome == nomeDoConta
                                     then True
                                     else procurar nomeDoContato agenda
 
--- Função toString 
-toString :: Contato -> [Char]
-toString contato = "Nome: " ++ nome contato 
-                                    ++ ", Telefone: " ++ show (telefone contato) 
-                                    ++ ", Endereco: " ++ endereco contato 
-                                    ++ ", Relacao: " ++ relacao contato 
-                                    ++  "///////"                    
+-- Função para alterar informações de um contato
+alterar :: Contato -> [Contato] -> [Contato]
+alterar contato [] = []
+alterar contato ((Contato nome1 telefone1 endereco1 relacao1) : agenda) = if (nome1 == (nome contato))
+                                    then [contato] ++ (alterar contato agenda)
+                                    else [cabeca] ++ (alterar contato agenda)
+                                        where cabeca = (Contato nome1 telefone1 endereco1 relacao1)
 -- Função auxiliar de mostrar agenda
 mostraAgenda_aux :: [Contato] -> [Char]
 mostraAgenda_aux [] = "."
