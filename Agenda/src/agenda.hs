@@ -35,10 +35,14 @@ inserir agendaAntiga novoContato
 mostrar_aux :: [Contato] -> IO()
 mostrar_aux [] = putStrLn("==============================================================================")
 mostrar_aux (contato:agenda) = do
-                                    putStrLn ("Nome: " ++ nome contato ++ ", Telefone: " ++ show (telefone contato) ++ ", Endereco: " ++ endereco contato ++ ", Relacao: " ++ relacao contato ++  "")
+                                    putStrLn ("Nome: " ++ nome contato 
+                                               ++ ", Telefone: "
+                                               ++ show (telefone contato) 
+                                               ++ ", Endereco: " ++ endereco contato 
+                                               ++ ", Relacao: " 
+                                               ++ relacao contato)
                                     mostrar_aux agenda 
 
--- Função para mostrar agenda
 mostrar :: [Contato] -> IO()
 mostrar agenda 
                     | null agenda = putStrLn ("Agenda vazia")
@@ -48,7 +52,7 @@ mostrar agenda
 
 -- Função para remover elemento de lista
 remover :: [Contato] -> [Char] -> [Contato]
-remover agenda nome2 = [nome1 | nome1 <- agenda, (nome nome1) /= nome2]
+remover agenda nome2 = [contato | contato <- agenda, (nome contato) /= nome2]
 
 
 -- Operações pedidas no exercício
