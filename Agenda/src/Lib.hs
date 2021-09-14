@@ -21,16 +21,7 @@ alterar contato ((Contato nome1 telefone1 endereco1 relacao1) : agenda) = if (no
                                     then [contato] ++ (alterar contato agenda)
                                     else [cabeca] ++ (alterar contato agenda)
                                         where cabeca = (Contato nome1 telefone1 endereco1 relacao1)
--- Função auxiliar de mostrar agenda
-mostraAgenda_aux :: [Contato] -> [Char]
-mostraAgenda_aux [] = "."
-mostraAgenda_aux (contato:agenda) = toString contato ++ mostraAgenda_aux agenda 
 
--- Função para mostrar agenda
-mostraAgenda :: [Contato] -> [Char]
-mostraAgenda agenda 
-                    | null agenda = "Agenda vazia"
-                    | otherwise = mostraAgenda_aux agenda
 
 -- Função para inserir novo contato na agenda
 -- Caso nome já exista na agenda deverá haver uma alteração no contato correspondente 
@@ -56,8 +47,5 @@ mostrar agenda
                                     mostrar_aux agenda
 
 
-contato1 = Contato "Fulano" 99999999 "Rua A" "UFF"
-contato2 = Contato "Ciclano" 88888888 "Rua B" "Cederj"
-contato3 = Contato "Beltrano" 88889999 "Rua C" "Infância"
 
-agenda = [contato1, contato2, contato3]
+-- Operações pedidas no exercício
