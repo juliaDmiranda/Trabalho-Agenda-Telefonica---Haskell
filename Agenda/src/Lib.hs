@@ -5,7 +5,7 @@ data Contato = Contato {
                             , endereco :: [Char] -- endereço do contato
                             , relacao :: [Char] -- relação com o contato
 
-                        } deriving(Show, Eq)
+                        }
 
 addContato :: [Contato] -> Contato -> [Contato]
 addContato [] novoContato = [novoContato]
