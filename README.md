@@ -1,5 +1,5 @@
 # Agenda Telefônica em Haskell
-Trabalho de agenda telefônica baseado no [trabalho 1](https://github.com/juliaDmiranda/lp-agenda-telefonica.git) utilizando a linguagem funcional Haskell.
+Trabalho de agenda telefônica baseado [neste trabalho](https://github.com/juliaDmiranda/lp-agenda-telefonica.git) em Java, agora utilizando a linguagem funcional Haskell.
 
 ## Ferramentas
 
