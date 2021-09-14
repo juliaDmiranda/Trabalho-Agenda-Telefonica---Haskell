@@ -7,9 +7,12 @@ data Contato = Contato {
 
                         }
 
-addContato :: [Contato] -> Contato -> [Contato]
-addContato [] novoContato = [novoContato]
-addContato agendaAntiga novoContato = [novoContato] ++ agendaAntiga  
+-- Função de busca do contato (ainda falta ajeitar para procurar só parte do nome)
+procurar :: [Char] -> [Contato] -> Bool
+procurar nomeDoContato [] = False
+procurar nomeDoContato ((Contato nome _ _ _) : agenda) = if (nome == nomeDoContato)
+                                    then True
+                                    else procurar nomeDoContato agenda
 
 -- Função toString 
 toString :: Contato -> [Char]
