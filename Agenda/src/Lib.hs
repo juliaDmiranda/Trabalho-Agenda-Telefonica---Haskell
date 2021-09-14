@@ -46,6 +46,9 @@ mostrar agenda
                                     putStrLn("==============================================================================")
                                     mostrar_aux agenda
 
+-- Função para remover elemento de lista
+remover :: [Contato] -> [Char] -> [Contato]
+remover agenda nome2 = [nome1 | nome1 <- agenda, (nome nome1) /= nome2]
 
 
 -- Operações pedidas no exercício
