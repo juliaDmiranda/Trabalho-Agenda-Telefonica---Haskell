@@ -32,8 +32,13 @@ mostraAgenda agenda
                     | null agenda = "Agenda vazia"
                     | otherwise = mostraAgenda_aux agenda
 
-ehDiferente :: [Char] -> [Char] -> Bool
-ehDiferente nomeDoContato nome = nomeDoContato /= nome
+-- Função para inserir novo contato na agenda
+-- Caso nome já exista na agenda deverá haver uma alteração no contato correspondente 
+inserir :: [Contato] -> Contato -> [Contato]
+inserir agendaAntiga novoContato
+                        | null agendaAntiga = [novoContato]
+                        | procurar (nome novoContato) agendaAntiga = alterar novoContato agendaAntiga
+                        | otherwise = agendaAntiga ++ [novoContato]
 
 {- 
 achaContato :: [Char] -> [Contato] -> Contato
