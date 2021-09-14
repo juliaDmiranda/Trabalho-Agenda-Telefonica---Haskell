@@ -6,6 +6,7 @@ Trabalho de agenda telefônica baseado no trabalho 1 daqui utilizando a linguage
 * Inserir contato
 * Remover contato
 * Buscar contato
+* Alterar contato
 * Mostrar agenda
 
 
