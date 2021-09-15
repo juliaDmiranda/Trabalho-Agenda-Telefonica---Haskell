@@ -78,3 +78,9 @@ trabalho =  do
                 let agendaRemoveCiclano = remover agendaInsereFulano "Ciclano"
                 mostrar agendaRemoveCiclano
 
+
+{- 
+let a1 = inserir  agendaInicial (Contato "Amanda Pereira" 27723536 "Rua Das Oliveiras" "Faculdade")
+buscar "Pereira" a1
+buscar "Julia" a1 
+-}
