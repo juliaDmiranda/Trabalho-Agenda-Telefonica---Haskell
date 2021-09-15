@@ -69,8 +69,8 @@ remover agenda nome2 = [contato | contato <- agenda, (nome contato) /= nome2]
 
 
 -- Operações pedidas no exercício
-trabalho :: IO() 
-trabalho =  do
+principal :: IO() 
+principal =  do
                 putStrLn("Insere Fulano na agenda vazia\n")
                 let a1 = inserir [] (Contato "Fulano" 99999999 "Rua A" "UFF")  
                 putStrLn("\nInsere Ciclano na agenda\n")
