@@ -1,3 +1,5 @@
+import Data.Char
+
 -- Tipo Contato escrito na forma de registro
 data Contato = Contato { 
                             nome :: [Char] -- nome do contato
