@@ -33,10 +33,10 @@ buscar nomeDoContato (contato:agenda) = if estaContido nomeDoContato (nome conta
 
 -- Função para alterar informações de um contato
 alterar :: Contato -> [Contato] -> [Contato]
-alterar contato [] = []
-alterar contato ((Contato nome1 telefone1 endereco1 relacao1) : agenda) = if (nome1 == (nome contato))
-                                    then [contato] ++ (alterar contato agenda)
-                                    else [cabeca] ++ (alterar contato agenda)
+alterar contatoAlterado [] = []
+alterar contatoAlterado (contato : agenda) = if ((nome contato) == (nome contatoAlterado))
+                                    then [contatoAlterado] ++ (alterar contato agenda)
+                                    else [contato] ++ (alterar contatoAlterado agenda)
                                         where cabeca = (Contato nome1 telefone1 endereco1 relacao1)
 
 
