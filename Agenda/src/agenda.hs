@@ -7,7 +7,7 @@ data Contato = Contato {
                             , endereco :: [Char] -- endereço do contato
                             , relacao :: [Char] -- relação com o contato
 
-                        }
+                        }deriving(Show)
 
 -- Função de busca do contato (ainda falta ajeitar para procurar só parte do nome)
 procurar :: [Char] -> [Contato] -> Bool
