@@ -12,31 +12,28 @@ data Contato = Contato {
 -- Função para verificar se todos os caracteres de str1 estão dispostos consecutivamente na str2
 estaContido_aux :: [Char] -> [Char] -> [Char]
 estaContido_aux [] _ = []
-estaContido_aux str1 str2 = if (toLower( head str1) == toLower (head str2))
-                                    then [head str1] ++ (estaContido_aux (tail str1) (tail str2))
+estaContido_aux str1 str2 = if (toLower( head str1) == toLower (head str2)) then [head str1] ++ (estaContido_aux (tail str1) (tail str2))
                                     else []
+
 -- Função para verificar se a string str1 está contida na str2
 estaContido :: [Char] -> [Char] -> Bool
 estaContido str1 [] = False
 estaContido str1 str2 = if (toLower( head str1) == toLower (head str2)) && (length (tail str1) == length (estaContido_aux (tail str1) (tail str2)))
-                                    then 
-                                        True
-                                else estaContido str1 (tail str2) 
+                            then True
+                        else estaContido str1 (tail str2) 
 
 -- Função de busca do contato
-buscar :: [Char] -> [Contato] -> [Contato]
-buscar _ [] = []
-buscar nomeDoContato (contato:agenda) = if estaContido nomeDoContato (nome contato)
-                                    then [contato] ++ buscar nomeDoContato []
-                                    else buscar nomeDoContato agenda
+buscar :: [Char] -> [Contato] -> Contato
+buscar _ [] = (Contato "Contato inexistente" 0 "-" "-")
+buscar nomeDoContato (contato:agenda) = if estaContido nomeDoContato (nome contato) then contato 
+                                        else buscar nomeDoContato agenda
 
 
 -- Função para alterar informações de um contato
 alterar :: Contato -> [Contato] -> [Contato]
 alterar contatoAlterado [] = []
-alterar contatoAlterado (contato : agenda) = if ((nome contato) == (nome contatoAlterado))
-                                    then [contatoAlterado] ++ (alterar contato agenda)
-                                    else [contato] ++ (alterar contatoAlterado agenda)
+alterar contatoAlterado (contato : agenda) = if ((nome contato) == (nome contatoAlterado)) then [contatoAlterado] ++ (alterar contato agenda)
+                                             else [contato] ++ (alterar contatoAlterado agenda)
 
 -- Função para inserir novo contato na agenda
 -- Caso nome já exista na agenda deverá haver uma alteração no contato correspondente 
@@ -50,13 +47,11 @@ inserir agendaAntiga novoContato
 mostrar_aux :: [Contato] -> IO()
 mostrar_aux [] = putStrLn("==============================================================================")
 mostrar_aux (contato:agenda) = do
-                                    putStrLn ("Nome: " ++ nome contato 
-                                               ++ ", Telefone: "
-                                               ++ show (telefone contato) 
-                                               ++ ", Endereco: " ++ endereco contato 
-                                               ++ ", Relacao: " 
-                                               ++ relacao contato)
-                                    mostrar_aux agenda 
+                                putStrLn ("Nome: " ++ nome contato 
+                                          ++ ", Telefone: " ++ show (telefone contato) 
+                                          ++ ", Endereco: " ++ endereco contato  
+                                          ++ ", Relacao: " ++ relacao contato)
+                                mostrar_aux agenda 
 
 mostrar :: [Contato] -> IO()
 mostrar agenda 
@@ -69,23 +64,17 @@ mostrar agenda
 remover :: [Contato] -> [Char] -> [Contato]
 remover agenda nome2 = [contato | contato <- agenda, (nome contato) /= nome2]
 
-
+agendaInicial = [(Contato "Fulano" 99999999 "Rua A" "UFF"), (Contato "Ciclano" 88888888 "Rua B" "Cederj"), (Contato "Beltrano" 88889999 "Rua C" "Infância")]
 
 -- Operações pedidas no exercício
 trabalho :: IO() 
-trabalho = 
-            do
-                putStrLn("Inserindo os contatos na agenda vazia")
-                putStrLn("")
-                let agendaInicial = [(Contato "Fulano" 99999999 "Rua A" "UFF"), (Contato "Ciclano" 88888888 "Rua B" "Cederj"), (Contato "Beltrano" 88889999 "Rua C" "Infância")]
+trabalho =  do
+                putStrLn("Inserindo os contatos na agenda vazia\n")
                 mostrar agendaInicial
-                putStrLn("")
-                putStrLn("Altera Fulano")
-                putStrLn("")
+                putStrLn("\nInsere Fulano(novamente)")
                 let agendaInsereFulano = inserir agendaInicial (Contato "Fulano" 77777777 "Rua D" "Churrasco do Ciclano")
                 mostrar agendaInsereFulano
-                putStrLn("")
-                putStrLn("Remove Ciclano")
-                putStrLn("")
+                putStrLn("\nRemove Ciclano\n")
                 let agendaRemoveCiclano = remover agendaInsereFulano "Ciclano"
                 mostrar agendaRemoveCiclano
+
