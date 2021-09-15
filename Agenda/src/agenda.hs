@@ -9,12 +9,27 @@ data Contato = Contato {
 
                         }deriving(Show)
 
--- Função de busca do contato (ainda falta ajeitar para procurar só parte do nome)
-procurar :: [Char] -> [Contato] -> Bool
-procurar nomeDoContato [] = False
-procurar nomeDoContato ((Contato nome _ _ _) : agenda) = if (nome == nomeDoContato)
-                                    then True
-                                    else procurar nomeDoContato agenda
+-- Função para verificar se todos os caracteres de str1 estão dispostos consecutivamente na str2
+estaContido_aux :: [Char] -> [Char] -> [Char]
+estaContido_aux [] _ = []
+estaContido_aux str1 str2 = if (toLower( head str1) == toLower (head str2))
+                                    then [head str1] ++ (estaContido_aux (tail str1) (tail str2))
+                                    else []
+-- Função para verificar se a string str1 está contida na str2
+estaContido :: [Char] -> [Char] -> Bool
+estaContido str1 [] = False
+estaContido str1 str2 = if (toLower( head str1) == toLower (head str2)) && (length (tail str1) == length (estaContido_aux (tail str1) (tail str2)))
+                                    then 
+                                        True
+                                else estaContido str1 (tail str2) 
+
+-- Função de busca do contato
+buscar :: [Char] -> [Contato] -> [Contato]
+buscar _ [] = []
+buscar nomeDoContato (contato:agenda) = if estaContido nomeDoContato (nome contato)
+                                    then [contato] ++ buscar nomeDoContato []
+                                    else buscar nomeDoContato agenda
+
 
 -- Função para alterar informações de um contato
 alterar :: Contato -> [Contato] -> [Contato]
