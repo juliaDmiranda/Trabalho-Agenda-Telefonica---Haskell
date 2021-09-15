@@ -55,7 +55,7 @@ mostrar_aux (contato:agenda) = do
                                           ++ ", Endereco: " ++ endereco contato  
                                           ++ ", Relacao: " ++ relacao contato)
                                 mostrar_aux agenda 
-
+-- Função de mostrar agenda
 mostrar :: [Contato] -> IO()
 mostrar agenda 
                     | null agenda = putStrLn ("Agenda vazia")
