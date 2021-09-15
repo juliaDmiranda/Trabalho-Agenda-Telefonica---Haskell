@@ -37,15 +37,13 @@ alterar contatoAlterado [] = []
 alterar contatoAlterado (contato : agenda) = if ((nome contato) == (nome contatoAlterado))
                                     then [contatoAlterado] ++ (alterar contato agenda)
                                     else [contato] ++ (alterar contatoAlterado agenda)
-                                        where cabeca = (Contato nome1 telefone1 endereco1 relacao1)
-
 
 -- Função para inserir novo contato na agenda
 -- Caso nome já exista na agenda deverá haver uma alteração no contato correspondente 
 inserir :: [Contato] -> Contato -> [Contato]
 inserir agendaAntiga novoContato
                         | null agendaAntiga = [novoContato]
-                        | procurar (nome novoContato) agendaAntiga = alterar novoContato agendaAntiga
+                        | not (null [contato | contato <- agendaAntiga, (nome contato) == (nome novoContato)]) = alterar novoContato agendaAntiga
                         | otherwise = agendaAntiga ++ [novoContato]
 
 -- Função auxiliar de mostrar agenda
@@ -70,6 +68,7 @@ mostrar agenda
 -- Função para remover elemento de lista
 remover :: [Contato] -> [Char] -> [Contato]
 remover agenda nome2 = [contato | contato <- agenda, (nome contato) /= nome2]
+
 
 
 -- Operações pedidas no exercício
