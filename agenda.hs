@@ -24,10 +24,10 @@ estaContido str1 str2 = if (toLower( head str1) == toLower (head str2)) && (leng
                         else estaContido str1 (tail str2) 
 
 -- Função de busca do contato
-buscar :: [Char] -> [Contato] -> Contato
-buscar _ [] = (Contato "Contato inexistente" 0 "-" "-")
+buscar :: [Char] -> [Contato] -> Maybe Contato
+buscar _ [] = Nothing
 buscar nomeDoContato (contato:agenda)
-                                    |estaContido nomeDoContato (nome contato) = contato 
+                                    |estaContido nomeDoContato (nome contato) = Just contato 
                                     |otherwise = buscar nomeDoContato agenda
 
 
